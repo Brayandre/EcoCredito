@@ -2,6 +2,7 @@ import * as React from 'react';
 import { TextInput, Text, View, Button, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+
 export default class Cadastro extends React.Component {
   constructor(props) {
     super(props);
