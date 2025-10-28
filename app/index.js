@@ -1,39 +1,11 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { Link } from "expo-router";
-import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-export default class Nav1 extends React.Component {
+import { View, Text, Button, StyleSheet } from "react-native";
+import Navegacao from "./navigation/navegacao";
 
-
+export default class Home extends React.Component {
   render() {
     return (
-      <NavigationContainer>
-        <Navegacao1.Navigator>
-          <Navegacao1.Screen
-            name="Home"
-            component={Nav2}
-            options={{
-              tabBarIcon: ({ color, size }) => (
-                <MaterialCommunityIcons name="home" color={color} size={size} />
-              ), headerShown: false
-            }}
-          />
-          <Navegacao1.Screen
-            name="Cadastro"
-            component={Tela2}
-            options={{
-              tabBarIcon: ({ color, size }) => (
-                <MaterialCommunityIcons
-                  name="account-details"
-                  color={color}
-                  size={size}
-                />
-              ),
-            }}
-          />
-        </Navegacao1.Navigator>
-      </NavigationContainer>
+      <Navegacao/>
     );
   }
 }
