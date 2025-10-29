@@ -1,0 +1,49 @@
+import { db } from "../config/firebase";
+import { collection, addDoc, getDocs, doc, deleteDoc, updateDoc } from "firebase/firestore";
+
+// 🔹 Salvar dados
+export async function salvarUser(nome, user, senha) {
+  try {
+    await push(ref(db, "usuario"), {nome, user, senha });
+    alert("Salvo com sucesso!");
+  } catch (e) {
+    console.error("Erro ao salvar:", e);
+  }
+}
+
+// 🔹 Listar todos os notebooks (escuta em tempo real)
+export function listarUsuario(callback) {
+  const dbRef = ref(db, "usuario");
+  onValue(dbRef, (snapshot) => {
+    const data = snapshot.val();
+    const lista = data ? Object.values(data) : [];
+    callback(lista);
+  });
+}
+
+// 🔹 Buscar notebooks por marca
+export async function buscarUsuario(marca) {
+  const dbRef = query(ref(db, "usuario"), orderByChild("nome"), equalTo(marca));
+  const snapshot = await get(dbRef);
+  if (!snapshot.exists()) {
+    alert("Não encontrado!");
+    return [];
+  } else {
+    const data = snapshot.val();
+    return Object.values(data);
+  }
+}
+
+// 🔹 Excluir notebooks por marca
+export async function excluirNotebookPorMarca(marca) {
+  const dbRef = query(ref(db, "usuario"), orderByChild("nome"), equalTo(marca));
+  const snapshot = await get(dbRef);
+  if (snapshot.exists()) {
+    snapshot.forEach((child) => {
+      remove(ref(db, "usuario/" + child.key));
+    });
+    console.log("Removido com sucesso!");
+  } else {
+    alert("Nenhum registro encontrado para excluir.");
+  }
+}

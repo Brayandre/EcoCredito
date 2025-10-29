@@ -1,0 +1,15 @@
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+const firebaseConfig = {
+  apiKey: "AIzaSyBm4OBzKexUsRRROmoNBRTe7G5AcHewW8A",
+  authDomain: "bemviverreact.firebaseapp.com",
+  projectId: "bemviverreact",
+  storageBucket: "bemviverreact.appspot.com",
+  messagingSenderId: "479471217415",
+  appId: "1:479471217415:web:383e84d01b3c7268ef73a2",
+  measurementId: "G-H2GQLK6DLP",
+};
+
+const app = initializeApp(firebaseConfig);
+
+export const db = getFirestore(app);
