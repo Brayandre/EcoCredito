@@ -1,47 +1,88 @@
 import * as React from "react";
-import { TextInput, Text, View, Button, StyleSheet } from 'react-native';
+import { TextInput, Text, View, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Button } from "@react-navigation/elements";
+import firebase from "../config/firebase.js";
+import showAlert from "../components/alert.js"
 
-
-export default class CadastroScreen extends React.Component {
-  constructor(props) {
+export default class CadastrarUser extends React.Component{
+  constructor(props){
     super(props);
-    this.state = {
-      usuario: "",
-      senha: "",
-    };
+    this.nome = ""
+    this.user = ""
+    this.senha = ""
+    this.empresa = ""
+    this.cnpj = 0
   }
 
-  cadastrar = () => {
-    const { usuario, senha } = this.state;
-    if (usuario && senha) {
-      Alert.alert("Sucesso", `Usuário ${usuario} cadastrado!`);
-    } else {
-      Alert.alert("Erro", "Preencha todos os campos!");
+  async salvar(){
+      console.log("Função salvar() chamada");
+      console.log("Dados digitados:", this.nome, this.user, this.senha, this.empresa, this.cnpj);
+      if(!this.nome ||!this.user ||!this.senha ||!this.empresa ||!this.cnpj){
+        showAlert("Atenção","Preencha todos os campos!");
+        return;
+      }
+
+      try {
+        const verifUser = await firebase.database().ref("/notebooks").orderByChild("user").equalTo(this.user).once("value")
+        const verifCNPJ = await firebase.database().ref("/notebooks").orderByChild("cnpj").equalTo(this.cnpj).once("value")
+
+        if (verifUser.exists() && verifCNPJ.exists()) {
+          let userExiste = false;
+          verifUser.forEach(child => {
+            const dados = child.val();
+            if (dados.senha === this.senha) {
+              userExiste = true;
+            }
+          });
+
+          if (userExiste) {
+            showAlert("Atenção", "Usuário e senha já cadastrados!");
+            return;
+          }
+        }
+
+        await firebase.database().ref("/notebooks").push({
+          nome: this.nome,
+          user: this.user,
+          senha: this.senha,
+          empresa: this.empresa,
+          cnpj: this.cnpj
+        });
+        showAlert("Sucesso", "Usuário cadastrado com sucesso!");
+      } catch (error) {
+      console.log("erro");
     }
-  };
+  }
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.title}>Cadastrar Usuário</Text>
-
-        <TextInput
-          style={styles.input}
-          placeholder="Usuário"
-          onChangeText={(text) => this.setState({ usuario: text })}
+  render(){
+    return(
+      <View> 
+        <TextInput style={styles.input} 
+          placeholder="Nome"
+          onChangeText={(texto)=>{this.nome = texto}}
         />
-        <Text style={styles.title}>Cadastrar Senha</Text>
-
-        <TextInput
-          style={styles.input}
+        <TextInput style={styles.input} 
+          placeholder="Login"
+          onChangeText={(texto)=>{this.user = texto}}
+        />
+        <TextInput style={styles.input} 
           placeholder="Senha"
-          secureTextEntry
-          onChangeText={(text) => this.setState({ senha: text })}
+          onChangeText={(texto)=>{this.senha = texto}}
         />
-        <Button title="CADASTRAR" onPress={this.cadastrar} />
+        <TextInput style={styles.input} 
+          placeholder="Empresa Associada"
+          onChangeText={(texto)=>{this.empresa = texto}}
+        />
+        <TextInput style={styles.input} 
+          placeholder="CNPJ da Empresa"
+          onChangeText={(texto)=>{this.cnpj = texto}}
+        />
+      <TouchableOpacity style={styles.botao} onPress={() => this.salvar()}>
+        <Text style={styles.txtBotao}>Cadastrar</Text>
+      </TouchableOpacity>
       </View>
-    );
+    )
   }
 }
 

@@ -1,58 +1,67 @@
-import * as React from 'react';
-import { Alert, TextInput, Text, View, Button, StyleSheet } from 'react-native';
+import * as React from "react";
+import { TextInput, Text, View, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Button } from "@react-navigation/elements";
+import firebase from "../config/firebase.js";
+import showAlert from "../components/alert.js"
 
-
-const logCerto = "Brayan";
-const senCerto = 123;
-
-export default class Login extends React.Component {
-  constructor(props) {
+export default class CadastrarUser extends React.Component{
+  constructor(props){
     super(props);
-    this.state = {
-      login: "",
-      senha: "",
-    };
+    this.user = ""
+    this.senha = ""
   }
 
-  testLogin = () => {
-    const { login, senha } = this.state;
+  async testar(){
+      if(!this.nome ||!this.user ||!this.senha ||!this.empresa ||!this.cnpj){
+        showAlert("Atenção","Preencha todos os campos!");
+        return;
+      }
 
-    if (login === logCerto && parseInt(senha) === senCerto) {
-      console.log("CERTO")
-      // this.props.navigation.navigate("Filmes");
-    } else {
-      Alert.alert("Dados incorretos");
+      try {
+        const verifUser = await firebase.database().ref("/notebooks").orderByChild("user").equalTo(this.user).once("value")
+        const verifCNPJ = await firebase.database().ref("/notebooks").orderByChild("senha").equalTo(this.cnpj).once("value")
+
+        if (verifUser.exists() && verifCNPJ.exists()) {
+          verifUser.forEach(child => {
+            const dados = child.val();
+            if (dados.senha === this.senha) {
+              // ir para as page
+            }
+          });
+
+          if (userExiste) {
+            showAlert("Atenção", "Usuário e senha não encontrado");
+            return;
+          }
+        }
+
+        await firebase.database().ref("/notebooks").push({
+          user: this.user,
+          senha: this.senha,
+        });
+        showAlert("Sucesso", "Usuário cadastrado com sucesso!");
+      } catch (error) {
+      console.log("erro");
     }
-  };
+  }
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.title}>Login</Text>
-
-        <TextInput
-          style={styles.input}
-          placeholder="Usuário"
-          onChangeText={(text) => this.setState({ login: text })}
+  render(){
+    return(
+      <View> 
+        <TextInput style={styles.input} 
+          placeholder="Login"
+          onChangeText={(texto)=>{this.user = texto}}
         />
-        <Text style={styles.title}>Senha</Text>
-
-        <TextInput
-          style={styles.input}
+        <TextInput style={styles.input} 
           placeholder="Senha"
-          secureTextEntry
-          onChangeText={(text) => this.setState({ senha: text })}
+          onChangeText={(texto)=>{this.senha = texto}}
         />
-        <Button title="Entrar" onPress={this.testLogin} />
-        <View style={{ marginTop: 20 }}>
-          <Button
-            title="Ir para Cadastro"
-            onPress={() => this.props.navigation.navigate("Cadastro")}
-          />
-        </View>
+      <TouchableOpacity style={styles.botao} onPress={() => this.testar()}>
+        <Text style={styles.txtBotao}>Logar</Text>
+      </TouchableOpacity>
       </View>
-    );
+    )
   }
 }
 

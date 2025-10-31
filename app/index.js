@@ -1,11 +1,11 @@
 import React from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
-import Navegacao from "./navigation/navegacao";
+import NavegacaoInt from "./navigation/navegacao";
 
 export default class Home extends React.Component {
   render() {
     return (
-      <Navegacao/>
+      <NavegacaoInt/>
     );
   }
 }
