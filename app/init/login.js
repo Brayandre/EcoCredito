@@ -5,7 +5,7 @@ import { Button } from "@react-navigation/elements";
 import firebase from "../config/firebase.js";
 import showAlert from "../components/alert.js"
 
-export default class CadastrarUser extends React.Component{
+export default class Login extends React.Component{
   constructor(props){
     super(props);
     this.user = ""
@@ -13,34 +13,29 @@ export default class CadastrarUser extends React.Component{
   }
 
   async testar(){
-      if(!this.nome ||!this.user ||!this.senha ||!this.empresa ||!this.cnpj){
+      if(!this.user ||!this.senha){
         showAlert("Atenção","Preencha todos os campos!");
         return;
       }
 
       try {
         const verifUser = await firebase.database().ref("/notebooks").orderByChild("user").equalTo(this.user).once("value")
-        const verifCNPJ = await firebase.database().ref("/notebooks").orderByChild("senha").equalTo(this.cnpj).once("value")
 
-        if (verifUser.exists() && verifCNPJ.exists()) {
-          verifUser.forEach(child => {
-            const dados = child.val();
-            if (dados.senha === this.senha) {
-              // ir para as page
-            }
-          });
-
-          if (userExiste) {
-            showAlert("Atenção", "Usuário e senha não encontrado");
-            return;
+      if (verifUser.exists()) {
+        let loginOk = false;
+        verifUser.forEach(child => {
+          const dados = child.val();
+          if (dados.senha === this.senha) {
+            loginOk = true;
+            this.props.navigation.navigate("TabsAllPages");
           }
-        }
-
-        await firebase.database().ref("/notebooks").push({
-          user: this.user,
-          senha: this.senha,
         });
-        showAlert("Sucesso", "Usuário cadastrado com sucesso!");
+        if (!loginOk) {
+          showAlert("Atenção", "Senha incorreta!");
+        }
+      } else {
+        showAlert("Atenção", "Usuário não encontrado!");
+      }
       } catch (error) {
       console.log("erro");
     }

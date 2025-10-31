@@ -5,8 +5,10 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "../init/home";
 import Login from "../init/login";
 import Cadastro from "../init/cadastro";
-import Contabilidade from "../screens/dashboard";
-import Credito from "../screens/registro";
+import Dashboard from "../screens/dashboard";
+import Registro from "../screens/registro";
+import Extrato from "../screens/extrato";
+import Perfil from "../screens/gerenPerf";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -39,8 +41,10 @@ class TabsPages extends React.Component {
   render() {
     return (
         <Tab.Navigator>
-          <Tab.Screen name="Contabilidade" component={Contabilidade} />
-          <Tab.Screen name="Crédito" component={Credito} />
+          <Tab.Screen name="Registro" component={Registro} />
+          <Tab.Screen name="Extrato" component={Extrato} />
+          <Tab.Screen name="Dashboard" component={Dashboard} />
+          <Tab.Screen name="Perfil" component={Perfil} />
         </Tab.Navigator>
     );
   }
