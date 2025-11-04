@@ -6,12 +6,8 @@ import firebase from "../config/firebase.js";
 import showAlert from "../components/alert.js"
 
 export default class Login extends React.Component{
-  constructor(props){
-    super(props);
-    this.user = ""
-    this.senha = ""
-  }
 
+  // verifica se os input estao dentro do database do firebase, login e senha deve aparecer
   async testar(){
       if(!this.user ||!this.senha){
         showAlert("Atenção","Preencha todos os campos!");
@@ -27,6 +23,7 @@ export default class Login extends React.Component{
           const dados = child.val();
           if (dados.senha === this.senha) {
             loginOk = true;
+            AsyncStorage.setItem("usuarioLogado", this.user);
             this.props.navigation.navigate("TabsAllPages");
           }
         });

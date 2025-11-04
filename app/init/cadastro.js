@@ -15,6 +15,8 @@ export default class CadastrarUser extends React.Component{
     this.cnpj = 0
   }
 
+
+  // salva dados no firebase, verificando se o usuario e o cnpj ja existem
   async salvar(){
       console.log("Função salvar() chamada");
       console.log("Dados digitados:", this.nome, this.user, this.senha, this.empresa, this.cnpj);

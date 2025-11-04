@@ -1,6 +1,8 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/database";
 
+
+//configura a conexao c o firbase
 const firebaseConfig = {
   apiKey: "AIzaSyBm4OBzKexUsRRROmoNBRTe7G5AcHewW8A",
   authDomain: "bemviverreact.firebaseapp.com",
@@ -12,7 +14,6 @@ const firebaseConfig = {
   measurementId: "G-H2GQLK6DLP"
 };
 
-// Evita inicializar mais de uma vez
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }

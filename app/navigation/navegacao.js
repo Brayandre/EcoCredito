@@ -12,6 +12,7 @@ import Perfil from "../screens/gerenPerf";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
+//cria as telas de navegacao
 export default class Navegacao extends React.Component {
   render() {
     return (
@@ -25,7 +26,7 @@ export default class Navegacao extends React.Component {
 }
 
 
-
+//navegador durante login e cadastro
 class TabsUser extends React.Component {
   render() {
     return (
@@ -37,6 +38,7 @@ class TabsUser extends React.Component {
   }
 }
 
+// navegador para pos login
 class TabsPages extends React.Component {
   render() {
     return (
