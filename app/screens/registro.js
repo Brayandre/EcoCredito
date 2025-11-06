@@ -246,6 +246,7 @@ const stylesRegitro = StyleSheet.create({
   container: {
     paddingHorizontal: 20,
     paddingVertical: 30,
+    backgroundColor: '#e0f2f1',
   },
 
   blocksCards: {
@@ -318,7 +319,7 @@ const stylesRegitro = StyleSheet.create({
   },
 
   botaoC: {
-    backgroundColor: '#3A7AFE',  
+    backgroundColor: '#01b0d3ff', 
     paddingVertical: 14,
     paddingHorizontal: 25,
     borderRadius: 10,
@@ -335,7 +336,7 @@ const stylesRegitro = StyleSheet.create({
     left: -22,           
   },
 
-    txtBotaoC: {
+  txtBotaoC: {
     color: '#fff',
     fontWeight: 'bold',
     fontSize: 16,
@@ -345,13 +346,14 @@ const stylesRegitro = StyleSheet.create({
   titulo: {
   fontSize: 36,
   fontWeight: 'bold',
-  color: '#2E7D32', 
   textAlign: 'center',
-  marginTop: 30,
-  marginBottom: 25,
+  paddingTop: 30,
+  paddingBottom: 25,
   letterSpacing: 0.8,
   textShadowColor: 'rgba(0, 0, 0, 0.1)',
   textShadowOffset: { width: 1, height: 1 },
   textShadowRadius: 3,
+  color: '#005f73',
+  backgroundColor: '#e0f2f1',
 },
 });

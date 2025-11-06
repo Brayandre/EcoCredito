@@ -1,6 +1,7 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { Ionicons } from '@expo/vector-icons';
 
 import Home from "../init/home";
 import Login from "../init/login";
@@ -18,8 +19,8 @@ export default class Navegacao extends React.Component {
     return (
         <Stack.Navigator>
           <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="Tabs" component={TabsUser} />
-          <Stack.Screen name="TabsAllPages" component={TabsPages} />
+          <Stack.Screen name="Welcome" component={TabsUser} />
+          <Stack.Screen name="Bem-Estar" component={TabsPages} />
         </Stack.Navigator>
     );
   }
@@ -31,8 +32,16 @@ class TabsUser extends React.Component {
   render() {
     return (
         <Tab.Navigator>
-          <Tab.Screen name="Login" component={Login} />
-          <Tab.Screen name="Cadastro" component={Cadastro} />
+          <Tab.Screen 
+            name="Login" 
+            component={Login} 
+            options={{tabBarIcon: ({ color, size }) => (<Ionicons name="log-in" size={size} color={color} />),}}
+          />
+          <Tab.Screen 
+            name="Cadastro" 
+            component={Cadastro} 
+            options={{tabBarIcon: ({ color, size }) => (<Ionicons name="person-add" size={size} color={color} />),}}
+          />
         </Tab.Navigator>
     );
   }
@@ -43,10 +52,27 @@ class TabsPages extends React.Component {
   render() {
     return (
         <Tab.Navigator>
-          <Tab.Screen name="Registro" component={Registro} />
-          <Tab.Screen name="Extrato" component={Extrato} />
-          <Tab.Screen name="EcoCrédito" component={Imposto} />
-          <Tab.Screen name="Perfil" component={Perfil} />
+          <Tab.Screen 
+            name="Registro" 
+            component={Registro} 
+            options={{tabBarIcon: ({ color, size }) => <Ionicons name="document-text" size={size} color={color} />}}
+          />
+          <Tab.Screen 
+            name="Extrato" 
+            component={Extrato}
+            options={{tabBarIcon: ({ color, size }) => <Ionicons name="wallet" size={size} color={color} />}} 
+          />
+          <Tab.Screen 
+            name="EcoCrédito" 
+            component={Imposto} 
+            options={{tabBarIcon: ({ color, size }) => <Ionicons name="leaf" size={size} color={color} />}}
+          />
+            
+          <Tab.Screen 
+            name="Perfil" 
+            component={Perfil} 
+            options={{tabBarIcon: ({ color, size }) => <Ionicons name="person" size={size} color={color} />}}
+          />
         </Tab.Navigator>
     );
   }

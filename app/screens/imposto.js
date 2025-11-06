@@ -154,7 +154,6 @@ async carregarCreditos() {
         }
       }
     } catch (error) {
-      console.error("Erro ao gerar PDF:", error);
       showAlert("Erro", "Não foi possível gerar o PDF.");
     }
   }
@@ -181,13 +180,25 @@ async carregarCreditos() {
 
           <Button 
             title="Gere sua Isenção"
-            style={stylesImposto.botton}
+            style={stylesImposto.botao}
             onPress={() => this.gerarPDF()}
           />
         </View>
 
         <Text style={stylesImposto.info}>
-          *Cada 5.000 créditos gera 0,5% de isenção, com limite de 10%.
+          A partir de 5.000 créditos gera 0,5% de isenção, com limite de 10%, conforme tabela abaixo*.
+        </Text>
+
+        <Text style={stylesImposto.info}>
+               5000  | 0,5%<br></br>
+               15000 | 1,0%<br></br>
+               25000 | 1,5%<br></br>
+               35000 | 2,0%<br></br>
+               45000 | 2,5%<br></br>
+               55000 | 3,0%<br></br>
+               65000 | 3,5%<br></br>
+               75000 | 4,0%<br></br>
+              100000 | 0,5%;<br></br>
         </Text>
       </View>
     );
@@ -241,7 +252,7 @@ const stylesImposto = StyleSheet.create({
     marginTop: 20,
   },
   botao: {
-    backgroundColor: '#3A7AFE', 
+    backgroundColor: '#00a9caff',  
     paddingVertical: 14,
     paddingHorizontal: 25,
     borderRadius: 10,
