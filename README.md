@@ -5,9 +5,7 @@ Sistema inovador que promove a reciclagem em grandes empresas através de um pro
 
 O EcoCred é uma plataforma que incentiva a reciclagem corporativa permitindo que empresas registrem seus descartes de materiais recicláveis e recebam créditos em troca. Esses créditos podem ser convertidos em benefícios fiscais através de Cartas de Não Aproveitamento de Imposto.
 
-## 🚀 Funcionalidades
-
-### 🔐 Autenticação
+### 🔐 Autenticação/Funcionalidades
 - **Cadastro de usuários** - Sistema completo de registro
 - **Login seguro** - Autenticação via Firebase
 - **Gerenciamento de perfil** - Edição de dados do usuário
@@ -27,7 +25,7 @@ O EcoCred é uma plataforma que incentiva a reciclagem corporativa permitindo qu
 ### 📱 Páginas Principais
 - **Home** - Informações sobre o projeto e sua importância
 - **Login/Cadastro** - Autenticação de usuários
-- **Dashboard** - Controle de materiais recicláveis
+- **Registro** - Controle de materiais recicláveis
 - **EcoCréditos** - Gestão e resgate de benefícios fiscais
 - **Extrato** - Histórico financeiro detalhado
 - **Perfil** - Dados pessoais e histórico de reciclagem
@@ -38,7 +36,6 @@ O EcoCred é uma plataforma que incentiva a reciclagem corporativa permitindo qu
 - **Backend:** Firebase (Firestore, Auth)
 - **Desenvolvimento:** Visual Studio Code
 - **Estilização:** CSS3 / Styled Components
-- **Deploy:** (adicione aqui se aplicável)
 
 ## 📦 Pré-requisitos
 
@@ -52,3 +49,5 @@ O EcoCred é uma plataforma que incentiva a reciclagem corporativa permitindo qu
 - npx expo start -c
 
 ### Roda
+
+- npx expo start -c
