@@ -1,7 +1,7 @@
-import React from "react";
-import { View, Text, ActivityIndicator , StyleSheet, FlatList } from "react-native";
-import firebase from "../config/firebase.js";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import React from "react";
+import { ActivityIndicator, FlatList, StyleSheet, Text, View } from "react-native";
+import firebase from "../config/firebase.js";
 
 export default class Extrato extends React.Component {
   constructor(props) {
@@ -92,8 +92,8 @@ export default class Extrato extends React.Component {
             renderItem={({ item }) => (
               <View style={styles.card}>
                 <Text style={styles.cardTitle}>Código: {item.codigo}</Text>
-                <Text>Material: {item.material}</Text>
-                <Text>Peso: {item.peso}</Text>
+                <Text>Material: {item.tipo}</Text>
+                <Text>Toneladas: {item.toneladas}</Text>
                 <Text>Crédito: {item.credito} pts</Text>
                 <Text style={styles.dataTxt}>{item.data}</Text>
               </View>

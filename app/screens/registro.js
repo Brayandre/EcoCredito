@@ -1,8 +1,8 @@
-import React from "react";
-import { View, Text, TouchableOpacity, TextInput,  StyleSheet, Vibration  } from "react-native";
-import { Card} from 'react-native-paper';
-import firebase from "../config/firebase.js";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import React from "react";
+import { StyleSheet, Text, TextInput, TouchableOpacity, Vibration, View } from "react-native";
+import { Card } from 'react-native-paper';
+import firebase from "../config/firebase.js";
 
 export default class Registro extends React.Component {
   constructor(props){
@@ -282,7 +282,7 @@ const stylesRegitro = StyleSheet.create({
   },
 
   card: { 
-    flex: 1,
+    // flex: 1,
     backgroundColor: "#f5f5f5ff", 
     justifyContent: "center", 
     alignItems: "center",
@@ -294,7 +294,8 @@ const stylesRegitro = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.15,
     shadowRadius: 3,
-    position: 'relative'
+    position: 'relative',
+    width: 500,
   },
 
   text: { 
@@ -321,7 +322,7 @@ const stylesRegitro = StyleSheet.create({
   botaoC: {
     backgroundColor: '#01b0d3ff', 
     paddingVertical: 14,
-    paddingHorizontal: 25,
+    paddingHorizontal: 15,
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
@@ -333,7 +334,7 @@ const stylesRegitro = StyleSheet.create({
     marginLeft: 10,  
     position: 'relative',  
     top: -17,              
-    left: -22,           
+    left: -22,       
   },
 
   txtBotaoC: {

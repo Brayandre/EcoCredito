@@ -1,7 +1,7 @@
 import React from "react";
-import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, ScrollView } from "react-native";
-import bannerImage from '../../assets/images/sustentabilidade-og.webp';
+import { ImageBackground, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import imageBaixo from '../../assets/images/image3.png';
+import bannerImage from '../../assets/images/sustentabilidade-og.webp';
 // import MapView, { Marker } from 'react-native-maps';
 import { Platform } from 'react-native';
 
@@ -14,9 +14,10 @@ const FEI_COORDS = {
 
 export default class Home extends React.Component {
   render() {
+    const dataLocal = new Date().toLocaleDateString();
     return (
+      
       <ScrollView style={styleHome.container}>
-
         <ImageBackground
           source={bannerImage}
           style={styleHome.banner}
@@ -32,6 +33,7 @@ export default class Home extends React.Component {
             através de créditos de reciclagem. Nossa missão é transformar resíduos em benefícios para as empresas.
             Assim podemos associar a sustentabilidade com a economia, e tornar o mundo cada vez mais sustentável.
             {"\n"}{"\n"}<b>#VemSerUmDeNós</b>
+            {"\n"}{"\n"}{dataLocal}
           </Text>
         </View>
           <ImageBackground
