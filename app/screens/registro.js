@@ -50,7 +50,7 @@ export default class Registro extends React.Component {
       const snapshot = await ref.orderByChild("codigo").equalTo(this.cod_descarte).once("value");
 
       if (snapshot.exists()) {
-        alert("Esse código de reciclagem já foi usado!");
+        alert("Esse código de reciclagem já foi usado");
         return;
       }
 
