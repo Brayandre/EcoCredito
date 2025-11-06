@@ -5,6 +5,7 @@ import * as Print from "expo-print";
 import * as Sharing from "expo-sharing";
 import firebase from "../config/firebase.js";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Audio } from "expo-av";
 
 export default class Dashboard extends React.Component {
   constructor(props) {
@@ -69,29 +70,29 @@ async carregarCreditos() {
     if (percentual === 0) {
       showAlert("Créditos insuficientes", "Você precisa de pelo menos 5K de créditos para gerar uma isenção.");
       return;
-    }
+      }
 
     let valorNecessario = 0;
-  switch (percentual) {
-    case 0.5: valorNecessario = 5000; break;
-    case 1: valorNecessario = 15000; break;
-    case 1.5: valorNecessario = 25000; break;
-    case 2: valorNecessario = 35000; break;
-    case 3: valorNecessario = 45000; break;
-    case 4: valorNecessario = 55000; break;
-    case 5: valorNecessario = 65000; break;
-    case 7: valorNecessario = 75000; break;
-    case 10: valorNecessario = 100000; break;
-    default: valorNecessario = 0;
-  }
+    switch (percentual) {
+      case 0.5: valorNecessario = 5000; break;
+      case 1: valorNecessario = 15000; break;
+      case 1.5: valorNecessario = 25000; break;
+      case 2: valorNecessario = 35000; break;
+      case 3: valorNecessario = 45000; break;
+      case 4: valorNecessario = 55000; break;
+      case 5: valorNecessario = 65000; break;
+      case 7: valorNecessario = 75000; break;
+      case 10: valorNecessario = 100000; break;
+      default: valorNecessario = 0;
+    }
 
-  if (creditos < valorNecessario) {
-    showAlert("Créditos insuficientes", `Você precisa de ${valorNecessario.toLocaleString()} pts para gerar ${percentual}% de isenção.`);
-    return;
-  }
+    if (creditos < valorNecessario) {
+      showAlert("Créditos insuficientes", `Você precisa de ${valorNecessario.toLocaleString()} pts para gerar ${percentual}% de isenção.`);
+      return;
+    }
 
-  const novoSaldo = creditos - valorNecessario;
-
+    const novoSaldo = creditos - valorNecessario;
+    const { sound } = await Audio.Sound.createAsync(require("../../assets/sound/cheerful-527.mp3") );
     const data = new Date().toLocaleDateString("pt-BR");
 
     const html = `
@@ -133,6 +134,7 @@ async carregarCreditos() {
 
 
     try {
+      //verificacao de plataforma par geração do pdf
       const usuario = await AsyncStorage.getItem("usuarioLogado");
       if (!usuario) {
         return;
@@ -140,15 +142,14 @@ async carregarCreditos() {
       const ref = firebase.database().ref(`/creditos/${usuario}`);
       await ref.update({ saldo: novoSaldo });
       if (Platform.OS === "web") {
-        // Gera um blob manualmente e abre no navegador
         const blob = new Blob([html], { type: "text/html" });
         const url = URL.createObjectURL(blob);
         window.open(url, "_blank");
       } else {
-        // Gera PDF e compartilha no app mobile
         const file = await Print.printToFileAsync({ html });
         if (file?.uri) {
           await Sharing.shareAsync(file.uri);
+          await sound.playAsync();
         } else {
           throw new Error("Arquivo PDF não gerado");
         }
