@@ -1,16 +1,16 @@
 import React from "react";
 import { ImageBackground, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import MapView, { Marker } from 'react-native-maps';
 import imageBaixo from '../../assets/images/image3.png';
 import bannerImage from '../../assets/images/sustentabilidade-og.webp';
-// import MapView, { Marker } from 'react-native-maps';
-import { Platform } from 'react-native';
 
 const FEI_COORDS = {
-  latitude: -23.693, 
-  longitude: -46.557,
+  latitude: -23.7371,
+  longitude: -46.5856,
   latitudeDelta: 0.01,  
   longitudeDelta: 0.01, 
 };
+
 
 export default class Home extends React.Component {
   render() {
@@ -22,40 +22,21 @@ export default class Home extends React.Component {
           source={bannerImage}
           style={styleHome.banner}
         >
-          <Text style={styleHome.title}>Bem-Estar Viver</Text>
+          <Text style={styleHome.title}>EcoCrédito</Text>
           <Text style={styleHome.subt}>Programa de Reciclagem e Sustentabilidade</Text>
         </ImageBackground>
 
         <View style={styleHome.card}>
           <Text style={styleHome.text}>Sobre Nós</Text>
           <Text style={styleHome.cardText}>
-            Somos um programa de incentivo à reciclagem e à sustentabilidade, promovendo a conscientização ambiental
-            através de créditos de reciclagem. Nossa missão é transformar resíduos em benefícios para as empresas.
-            Assim podemos associar a sustentabilidade com a economia, e tornar o mundo cada vez mais sustentável.
-            {"\n"}{"\n"}<b>#VemSerUmDeNós</b>
-            {"\n"}{"\n"}{dataLocal}
+            <Text>Somos um programa de incentivo à reciclagem e à sustentabilidade, promovendo a conscientização ambiental</Text>
+            <Text>através de créditos de reciclagem. Nossa missão é transformar resíduos em benefícios para as empresas.</Text>
+            <Text>Assim podemos associar a sustentabilidade com a economia, e tornar o mundo cada vez mais sustentável.</Text>
+            <Text>#VemSerUmDeNós</Text>
+            <Text>{dataLocal}</Text>
           </Text>
         </View>
-          <ImageBackground
-            source={imageBaixo}
-            style={styleHome.banner}
-          >
-            <Text style={styleHome.title}>Nossa Localização</Text>
-            <View style={styleHome.mapWrapper}>
-              {Platform.OS !== 'web' ? (
-                <MapView
-                  style={styleHome.mapStyle}
-                  initialRegion={FEI_COORDS}
-                >
-                  <Marker coordinate={FEI_COORDS} title="Centro Educacional FEI" />
-                </MapView>
-              ) 
-              : (
-                <Text style={styleHome.subt}>Mapa não disponível no Web</Text>
-              )}
-            </View>
-          </ImageBackground>
-
+        
         <View style={styleHome.botao}>
           <TouchableOpacity
             style={styleHome.botaoC}
@@ -64,6 +45,30 @@ export default class Home extends React.Component {
             <Text style={styleHome.txtBotaoC}>Ir para Login/Cadastro</Text>
           </TouchableOpacity>
         </View>
+
+        <ImageBackground
+            source={imageBaixo}
+            style={styleHome.banner}
+          >
+            <Text style={styleHome.title}>Nossa Localização</Text>
+        <View style={styleHome.mapWrapper}>
+            </View>
+          </ImageBackground>
+
+        <MapView
+          style={styleHome.mapStyle}
+          initialRegion={FEI_COORDS}
+          showsUserLocation={true}     
+          showsCompass={true}       
+          zoomEnabled={true}           
+          scrollEnabled={true}          
+        >
+          <Marker 
+          coordinate={FEI_COORDS} 
+          title="Centro Universitário FEI"
+          description="Av. Humberto de Alencar Castelo Branco, 3972 - São Bernardo do Campo"
+          />
+        </MapView>
       </ScrollView>
     );
   }
@@ -83,7 +88,7 @@ const styleHome = StyleSheet.create({
     borderRadius: 16,
     overflow: "hidden",
     width: "100%",
-    height: 250,
+    height: 150,
     justifyContent: "center"
   },
 
@@ -182,5 +187,19 @@ const styleHome = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16,
     letterSpacing: 0.5,
+  },
+
+  mapWrapper: {
+    width: "100%",
+    height: 300,
+    borderRadius: 16,
+    overflow: "hidden",
+    marginTop: 20,
+  },
+
+  mapStyle: {
+    paddingTop: 200,
+    width: "100%",
+    height: "100%",
   },
 });

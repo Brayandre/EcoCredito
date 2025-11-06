@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { View, Text, FlatList, StyleSheet, ActivityIndicator } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useEffect, useState } from "react";
+import { ActivityIndicator, FlatList, StyleSheet, Text, View } from "react-native";
 import firebase from "../config/firebase";
 
 export default function Perfil() {
@@ -61,7 +61,7 @@ export default function Perfil() {
 
   if (loading) {
     return (
-      <View style={styles.container}>
+      <View style={stylesPerf.container}>
         <ActivityIndicator size="large" color="#00796b" />
         <Text>Carregando perfil...</Text>
       </View>
@@ -69,24 +69,24 @@ export default function Perfil() {
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.titulo}>Perfil do Usuário</Text>
+    <View style={stylesPerf.container}>
+      <Text style={stylesPerf.titulo}>Perfil do Usuário</Text>
 
-      <View style={styles.card}>
-        <Text><b>Nome:</b> {usuarioData.nome}</Text>
-        <Text><b>Usuário:</b> {usuarioData.user}</Text>
-        <Text><b>Empresa:</b> {usuarioData.empresa}</Text>
-        <Text><b>CNPJ:</b> {usuarioData.cnpj}</Text>
-        <Text><b>Total de Créditos:</b> {totalCreditos.toLocaleString()} pts</Text>
-        <Text><b>Total de Toneladas Recicladas:</b> {totalToneladas.toFixed(2)} ton</Text>
+      <View style={stylesPerf.card}>
+        <Text style={stylesPerf.info}>Nome: {usuarioData.nome}</Text>
+        <Text style={stylesPerf.info}>Usuário: {usuarioData.user}</Text>
+        <Text style={stylesPerf.info}>Empresa: {usuarioData.empresa}</Text>
+        <Text style={stylesPerf.info}>CNPJ: {usuarioData.cnpj}</Text>
+        <Text style={stylesPerf.info}>Total de Créditos: {totalCreditos.toLocaleString()} pts</Text>
+        <Text style={stylesPerf.info}>Total de Toneladas Recicladas: {totalToneladas.toFixed(2)} ton</Text>
       </View>
 
-      <Text style={styles.subTitulo}>Reciclagem Efetuadas</Text>
+      <Text style={stylesPerf.subTitulo}>Reciclagem Efetuadas</Text>
       <FlatList
         data={extrato}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item }) => (
-          <View style={styles.cardItem}>
+          <View style={stylesPerf.cardItem}>
             <Text>Tipo: {item.tipo}</Text>
             <Text>Toneladas: {item.toneladas}</Text>
           </View>
@@ -97,7 +97,7 @@ export default function Perfil() {
   );
 }
 
-const styles = StyleSheet.create({
+const stylesPerf = StyleSheet.create({
   container: { 
     flex: 1, 
     backgroundColor: '#e0f2f1', 
@@ -112,6 +112,10 @@ const styles = StyleSheet.create({
     marginBottom: 20 
   },
   
+  info: { 
+    fontWeight: "bold", 
+  },
+
   subTitulo: { 
     fontSize: 18, 
     fontWeight: "bold", 

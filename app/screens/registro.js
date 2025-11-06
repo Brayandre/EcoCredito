@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React from "react";
-import { StyleSheet, Text, TextInput, TouchableOpacity, Vibration, View } from "react-native";
+import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, Vibration, View } from "react-native";
 import { Card } from 'react-native-paper';
 import firebase from "../config/firebase.js";
 
@@ -29,7 +29,6 @@ export default class Registro extends React.Component {
     const usuarioLogado = await AsyncStorage.getItem("usuarioLogado");
 
     if (!usuarioLogado) {
-      Vibration.vibrate(400);
       alert("Nenhum usuário logado encontrado!");
       return;
     }
@@ -63,7 +62,7 @@ export default class Registro extends React.Component {
         data: new Date().toISOString()
       });
 
-            Vibration.vibrate(150);
+      Vibration.vibrate(150);
       Vibration.vibrate(150);
       alert(`Crédito de ${credito.toFixed(2)} adicionado`);
 
@@ -75,19 +74,18 @@ export default class Registro extends React.Component {
 
   render() {
     return (
-      <View>
+      <ScrollView>
 
         <Text style={stylesRegitro.titulo}>Registro de Reciclados</Text>
 
         <View style={stylesRegitro.container}>
-          <View style={stylesRegitro.blocksCards}>
 
             <Card style={stylesRegitro.card}>
               <Card.Title title="Madeira"/>
               <Card.Content>
                 <Text variant="bodyMedium">{'A reciclagem da madeira é crucial para a sustentabilidade ambiental, pois contribui diretamente para a preservação dos recursos naturais, a redução do desmatamento e a mitigação das mudanças climáticas. '}</Text>
               </Card.Content>
-              <br></br>
+              <Text> </Text>
               <View style={stylesRegitro.blocksInput}>
                 <View>
                   <TextInput style={stylesRegitro.input} 
@@ -112,7 +110,7 @@ export default class Registro extends React.Component {
               <Card.Content>
                 <Text variant="bodyMedium">{'A reciclagem do plástico é crucial para o meio ambiente, a economia e a sociedade, pois reduz a poluição ao diminuir o descarte em aterros e oceanos, economiza recursos naturais (como petróleo e energia)'}</Text>
               </Card.Content>
-              <br></br>
+              <Text></Text>
               <View style={stylesRegitro.blocksInput}>
                 <View>
                   <TextInput style={stylesRegitro.input} 
@@ -137,7 +135,7 @@ export default class Registro extends React.Component {
               <Card.Content>
                 <Text variant="bodyMedium">{'A reciclagem de derivados de borracha, especialmente de pneus, é crucial por razões ambientais e econômicas, transformando um resíduo de difícil degradação em matéria-prima valiosa. '}</Text>
               </Card.Content>
-              <br></br>
+              <Text></Text>
               <View style={stylesRegitro.blocksInput}>
                 <View>
                   <TextInput style={stylesRegitro.input} 
@@ -156,15 +154,12 @@ export default class Registro extends React.Component {
                 </TouchableOpacity>
               </View>
             </Card>
-          </View>
-
-          <View style={stylesRegitro.blocksCards}>
             <Card style={stylesRegitro.card}>
               <Card.Title title="Materiais de Construção"/>
               <Card.Content>
                 <Text variant="bodyMedium">{'A reciclagem de materiais de construção é vital para a sustentabilidade ambiental e econômica do setor. Ela reduz a extração de matérias-primas virgens e a quantidade de resíduos em aterros, preservando recursos naturais e ecossistemas'}</Text>
               </Card.Content>
-              <br></br>
+              <Text></Text>
               <View style={stylesRegitro.blocksInput}>
                 <View>
                   <TextInput style={stylesRegitro.input} 
@@ -191,7 +186,7 @@ export default class Registro extends React.Component {
               <Card.Content>
                 <Text variant="bodyMedium">{'A reciclagem de metais é crucial para a sustentabilidade ambiental, pois reduz drasticamente a necessidade de mineração e o consumo de energia. Economicamente, impulsionando a economia circular..'}</Text>
               </Card.Content>
-              <br></br>
+              <Text></Text>
               <View style={stylesRegitro.blocksInput}>
                 <View>
                   <TextInput style={stylesRegitro.input} 
@@ -216,7 +211,7 @@ export default class Registro extends React.Component {
               <Card.Content>
                 <Text variant="bodyMedium">{'O descarte correto de resíduos contaminados é fundamental para proteger a saúde pública e preservar o meio ambiente, prevenindo a propagação de doenças e a contaminação do solo e da água.'}</Text>
               </Card.Content>
-              <br></br>
+              <Text></Text>
               <View style={stylesRegitro.blocksInput}>
                 <View>
                   <TextInput style={stylesRegitro.input} 
@@ -235,9 +230,8 @@ export default class Registro extends React.Component {
                 </TouchableOpacity>
               </View>
             </Card>
-          </View>
         </View>
-      </View>
+      </ScrollView >
     );
   }
 }
@@ -247,82 +241,50 @@ const stylesRegitro = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 30,
     backgroundColor: '#e0f2f1',
-  },
-
-  blocksCards: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 40,
-    height: 275,
-    width: '100%',         
-    paddingHorizontal: 20,  
-  },
-
-  blocksInput: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 40,     
-    alignItems: 'center',   
-    paddingHorizontal: 20,  
-  },
-
-  botao: {
-    backgroundColor: '#3A7AFE', 
-    paddingVertical: 14,
-    paddingHorizontal: 25,
-    borderRadius: 10,
     alignItems: 'center',
-    justifyContent: 'center',
-    shadowColor: '#000',
-    shadowOpacity: 0.2,
-    shadowOffset: { width: 0, height: 3 },
-    shadowRadius: 5,
-    elevation: 5,
-    marginLeft: 10,     
   },
 
   card: { 
-    // flex: 1,
-    backgroundColor: "#f5f5f5ff", 
-    justifyContent: "center", 
-    alignItems: "center",
+    backgroundColor: "#f5f5f5",
     borderRadius: 16,
-    padding: 10,
-    marginHorizontal: 20,
+    padding: 16,
+    marginBottom: 25,
+    width: '90%',
+    alignItems: "center",
     elevation: 3, 
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.15,
     shadowRadius: 3,
-    position: 'relative',
-    width: 500,
   },
 
   text: { 
     color: "#000", 
     fontSize: 16, 
-    fontWeight: "bold", 
-    marginBottom: 10, 
     textAlign: "center",
+  },
+
+  blocksInput: {
+    width: '100%',
+    marginTop: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
   },
 
   input: {
     borderWidth: 1,
     borderColor: "#aaa",
-    padding: 10,
     borderRadius: 8,
+    padding: 10,
     marginBottom: 15,
-    paddingStart: 20,
-    marginBottom: 30,
-    width: 180,
-    width: 300,
-    bottom: 10,
+    width: 220,
   },
 
   botaoC: {
-    backgroundColor: '#01b0d3ff', 
-    paddingVertical: 14,
-    paddingHorizontal: 15,
+    backgroundColor: '#01b0d3', 
+    paddingVertical: 12,
+    paddingHorizontal: 18,
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
@@ -330,31 +292,24 @@ const stylesRegitro = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowOffset: { width: 0, height: 3 },
     shadowRadius: 5,
-    elevation: 5,
-    marginLeft: 10,  
-    position: 'relative',  
-    top: -17,              
-    left: -22,       
+    elevation: 30,
+    alignSelf: 'center',
+    paddingRight: 15,
   },
 
   txtBotaoC: {
     color: '#fff',
     fontWeight: 'bold',
-    fontSize: 16,
+    fontSize: 15,
     letterSpacing: 0.5,
   },
 
   titulo: {
-  fontSize: 36,
-  fontWeight: 'bold',
-  textAlign: 'center',
-  paddingTop: 30,
-  paddingBottom: 25,
-  letterSpacing: 0.8,
-  textShadowColor: 'rgba(0, 0, 0, 0.1)',
-  textShadowOffset: { width: 1, height: 1 },
-  textShadowRadius: 3,
-  color: '#005f73',
-  backgroundColor: '#e0f2f1',
-},
+    fontSize: 30,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    paddingVertical: 30,
+    color: '#005f73',
+    backgroundColor: '#e0f2f1',
+  },
 });

@@ -1,11 +1,11 @@
-import React from "react";
-import { View, Text, Button, StyleSheet, Platform  } from "react-native";
-import showAlert from "../components/alert.js"
-import * as Print from "expo-print";
-import * as Sharing from "expo-sharing";
-import firebase from "../config/firebase.js";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Audio } from "expo-av";
+import * as Print from "expo-print";
+import * as Sharing from "expo-sharing";
+import React from "react";
+import { Button, Platform, StyleSheet, Text, View } from "react-native";
+import showAlert from "../components/alert.js";
+import firebase from "../config/firebase.js";
 
 export default class Dashboard extends React.Component {
   constructor(props) {
@@ -108,7 +108,7 @@ async carregarCreditos() {
         </style>
       </head>
       <body>
-        <h1 class="titulo">Certificado de Isencao Bem-Estar-Viver</h1>
+        <h1 class="titulo">Certificado de Isencao EcoCreditos</h1>
         <p>Concedemos ao usuario <strong>${usuario}</strong> o certificado como reconhecimento positivo obtido atraves do programa de reciclagem EcoCreditos.</p>
 
         <div class="bloco">
@@ -191,15 +191,15 @@ async carregarCreditos() {
         </Text>
 
         <Text style={stylesImposto.info}>
-               5000  | 0,5%<br></br>
-               15000 | 1,0%<br></br>
-               25000 | 1,5%<br></br>
-               35000 | 2,0%<br></br>
-               45000 | 2,5%<br></br>
-               55000 | 3,0%<br></br>
-               65000 | 3,5%<br></br>
-               75000 | 4,0%<br></br>
-              100000 | 0,5%;<br></br>
+               <Text>5000  | 0,5%</Text>
+               <Text>15000 | 1,0%</Text>
+               <Text>25000 | 1,5%</Text>
+               <Text>35000 | 2,0%</Text>
+               <Text>45000 | 2,5%</Text>
+               <Text>55000 | 3,0%</Text>
+               <Text>65000 | 3,5%</Text>
+               <Text>75000 | 4,0%</Text>
+              <Text>100000 | 0,5%</Text>
         </Text>
       </View>
     );
