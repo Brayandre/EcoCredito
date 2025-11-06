@@ -48,6 +48,6 @@ O EcoCred é uma plataforma que incentiva a reciclagem corporativa permitindo qu
 - É necessário ter NPM, NPX e Node
 - npx expo start -c
 
-## 9 - Roda
+## 9 - Comando para Compilar
 
 - npx expo start --tunnel --clear
