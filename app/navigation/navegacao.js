@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "../init/home";
 import Login from "../init/login";
 import Cadastro from "../init/cadastro";
-import Dashboard from "../screens/dashboard";
+import Imposto from "../screens/imposto";
 import Registro from "../screens/registro";
 import Extrato from "../screens/extrato";
 import Perfil from "../screens/gerenPerf";
@@ -45,7 +45,7 @@ class TabsPages extends React.Component {
         <Tab.Navigator>
           <Tab.Screen name="Registro" component={Registro} />
           <Tab.Screen name="Extrato" component={Extrato} />
-          <Tab.Screen name="Dashboard" component={Dashboard} />
+          <Tab.Screen name="EcoCrédito" component={Imposto} />
           <Tab.Screen name="Perfil" component={Perfil} />
         </Tab.Navigator>
     );
