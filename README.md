@@ -26,7 +26,17 @@ O EcoCred é uma plataforma que incentiva a reciclagem corporativa permitindo qu
 - **Home** - Informações sobre o projeto e sua importância
 - **Login/Cadastro** - Autenticação de usuários
 - **Registro** - Controle de materiais recicláveis
+  
+  <div align="center">
+    <img width="610" height="1356" alt="Screenshot_20251106-163444 Expo Go" src="https://github.com/user-attachments/assets/e60d7c39-bcfb-4cb9-9ad5-6e57812c1e51" textAlign="center"/>
+  </div>
+  
 - **EcoCréditos** - Gestão e resgate de benefícios fiscais
+  
+  <div align="center">
+    <img width="610" height="1356" alt="Screenshot_20251106-163437 Expo Go" src="https://github.com/user-attachments/assets/901df5f9-b2fa-43f6-ac15-ecacf73d38c2"/>
+  </div>
+  
 - **Extrato** - Histórico financeiro detalhado
 - **Perfil** - Dados pessoais e histórico de reciclagem
 
@@ -36,8 +46,13 @@ O EcoCred é uma plataforma que incentiva a reciclagem corporativa permitindo qu
 - **Backend:** Firebase (Firestore, Auth)
 - **Desenvolvimento:** Visual Studio Code
 - **Estilização:** CSS3 / Styled Components
+  
+
+
 
 ## 7 - Pré-requisitos
+
+
 
 - Node.js 16+
 - npm ou yarn
