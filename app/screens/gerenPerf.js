@@ -17,7 +17,7 @@ export default function Perfil() {
       try {
         const usuarioLogado = await AsyncStorage.getItem("usuarioLogado");
         if (!usuarioLogado) {
-          alert("Nenhum usuário logado encontrado!");
+          console.log("Nenhum usuário logado encontrado!");
           setLoading(false);
           return;
         }
@@ -51,7 +51,7 @@ export default function Perfil() {
         return () => ref.off();
 
       } catch (error) {
-        s("Erro ao carregar perfil.");
+        alert("Erro ao carregar perfil.");
         setLoading(false);
       }
     };
