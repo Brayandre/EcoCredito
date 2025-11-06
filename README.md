@@ -1,50 +1,54 @@
-# Welcome to your Expo app 👋
+# EcoCred - Sistema de Créditos de Reciclagem Corporativa
+Sistema inovador que promove a reciclagem em grandes empresas através de um programa de créditos e benefícios fiscais.
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## 🌱 Sobre o Projeto
 
-## Get started
+O EcoCred é uma plataforma que incentiva a reciclagem corporativa permitindo que empresas registrem seus descartes de materiais recicláveis e recebam créditos em troca. Esses créditos podem ser convertidos em benefícios fiscais através de Cartas de Não Aproveitamento de Imposto.
 
-1. Install dependencies
+## 🚀 Funcionalidades
 
-   ```bash
-   npm install
-   ```
+### 🔐 Autenticação
+- **Cadastro de usuários** - Sistema completo de registro
+- **Login seguro** - Autenticação via Firebase
+- **Gerenciamento de perfil** - Edição de dados do usuário
 
-2. Start the app
+### 📊 Gestão de Reciclagem
+- **Dashboard de materiais** - Cards individuais para cada tipo de material
+- **Registro de descartes** - Inserção de toneladas descartadas corretamente
+- **ID de reciclagem** - Identificação única para cada operação
+- **Histórico de materiais** - Visualização no perfil do usuário
 
-   ```bash
-   npx expo start
-   ```
+### 💰 Sistema de Créditos
+- **Acúmulo de eco créditos** - Conversão baseada no volume reciclado
+- **Extrato detalhado** - Histórico de recebimento de créditos
+- **Benefícios fiscais** - Resgate de créditos para isenção de impostos
+  - **0.5% de isenção** a cada X valor de crédito resgatado
 
-In the output, you'll find options to open the app in a
+### 📱 Páginas Principais
+- **Home** - Informações sobre o projeto e sua importância
+- **Login/Cadastro** - Autenticação de usuários
+- **Dashboard** - Controle de materiais recicláveis
+- **EcoCréditos** - Gestão e resgate de benefícios fiscais
+- **Extrato** - Histórico financeiro detalhado
+- **Perfil** - Dados pessoais e histórico de reciclagem
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 🛠️ Tecnologias Utilizadas
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- **Frontend:** React.js
+- **Backend:** Firebase (Firestore, Auth)
+- **Desenvolvimento:** Visual Studio Code
+- **Estilização:** CSS3 / Styled Components
+- **Deploy:** (adicione aqui se aplicável)
 
-## Get a fresh project
+## 📦 Pré-requisitos
 
-When you're ready, run:
+- Node.js 16+
+- npm ou yarn
+- Conta no Firebase
 
-```bash
-npm run reset-project
-```
+## 🔧 Instalação e Configuração
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+- É necessário ter NPM, NPX e Node
+- npx expo start -c
 
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+### Roda

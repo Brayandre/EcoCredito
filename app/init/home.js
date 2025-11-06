@@ -1,63 +1,65 @@
 import React from "react";
 import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, ScrollView } from "react-native";
 import bannerImage from '../../assets/images/sustentabilidade-og.webp';
+import imageBaixo from '../../assets/images/image3.png';
 // import MapView, { Marker } from 'react-native-maps';
 import { Platform } from 'react-native';
 
 const FEI_COORDS = {
   latitude: -23.693, 
   longitude: -46.557,
-  latitudeDelta: 0.01,   // zoom vertical
-  longitudeDelta: 0.01,  // zoom horizontal
+  latitudeDelta: 0.01,  
+  longitudeDelta: 0.01, 
 };
 
 export default class Home extends React.Component {
   render() {
     return (
-      <ScrollView style={stylesRegitro.container}>
-        {/* Banner / imagem de fundo */}
+      <ScrollView style={styleHome.container}>
+
         <ImageBackground
           source={bannerImage}
-          style={stylesRegitro.banner}
+          style={styleHome.banner}
         >
-          <Text style={stylesRegitro.title}>Bem-Estar Viver</Text>
-          <Text style={stylesRegitro.subt}>Programa de Reciclagem e Sustentabilidade</Text>
+          <Text style={styleHome.title}>Bem-Estar Viver</Text>
+          <Text style={styleHome.subt}>Programa de Reciclagem e Sustentabilidade</Text>
         </ImageBackground>
 
-        {/* Sobre Nós */}
-        <View style={stylesRegitro.card}>
-          <Text style={stylesRegitro.text}>Sobre Nós</Text>
-          <Text style={stylesRegitro.cardText}>
+        <View style={styleHome.card}>
+          <Text style={styleHome.text}>Sobre Nós</Text>
+          <Text style={styleHome.cardText}>
             Somos um programa de incentivo à reciclagem e à sustentabilidade, promovendo a conscientização ambiental
             através de créditos de reciclagem. Nossa missão é transformar resíduos em benefícios para as empresas.
             Assim podemos associar a sustentabilidade com a economia, e tornar o mundo cada vez mais sustentável.
             {"\n"}{"\n"}<b>#VemSerUmDeNós</b>
           </Text>
         </View>
-
-          <View style={stylesRegitro.card}>
-            <Text style={stylesRegitro.text}>Nossa Localização</Text>
-            <View style={stylesRegitro.mapWrapper}>
+          <ImageBackground
+            source={imageBaixo}
+            style={styleHome.banner}
+          >
+            <Text style={styleHome.title}>Nossa Localização</Text>
+            <View style={styleHome.mapWrapper}>
               {Platform.OS !== 'web' ? (
                 <MapView
-                  style={stylesRegitro.mapStyle}
+                  style={styleHome.mapStyle}
                   initialRegion={FEI_COORDS}
                 >
                   <Marker coordinate={FEI_COORDS} title="Centro Educacional FEI" />
                 </MapView>
               ) 
               : (
-                <Text>Mapa não disponível no Web</Text>
+                <Text style={styleHome.subt}>Mapa não disponível no Web</Text>
               )}
             </View>
-          </View>
+          </ImageBackground>
 
-        <View style={stylesRegitro.botao}>
+        <View style={styleHome.botao}>
           <TouchableOpacity
-            style={stylesRegitro.botaoC}
+            style={styleHome.botaoC}
             onPress={() => this.props.navigation.navigate("Welcome")}
           >
-            <Text style={stylesRegitro.txtBotaoC}>Ir para Login/Cadastro</Text>
+            <Text style={styleHome.txtBotaoC}>Ir para Login/Cadastro</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -65,7 +67,7 @@ export default class Home extends React.Component {
   }
 }
 
-const stylesRegitro = StyleSheet.create({
+const styleHome = StyleSheet.create({
   container: {
     paddingHorizontal: 20,
     paddingVertical: 30,
@@ -78,7 +80,6 @@ const stylesRegitro = StyleSheet.create({
     marginBottom: 30,
     borderRadius: 16,
     overflow: "hidden",
-    flex: 1,
     width: "100%",
     height: 250,
     justifyContent: "center"
